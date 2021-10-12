@@ -1,0 +1,53 @@
+h1{
+  text-align: center;
+  font-family: 'Andada Pro', serif;
+  color: rgb(59, 21, 230);
+	font-weight: 900;
+}
+h2{
+  font-family: 'Andada Pro', serif;
+}
+p{
+  font-family: 'Roboto', sans-serif;
+}
+.c_text{
+  color: rgb(188, 22, 230);
+  font-size: large;
+}
+.r_text{
+  color: rgb(14, 170, 22);
+  font-size: large;
+}
+.d_text{
+  color: rgb(236, 20, 13);
+  font-size: large;
+}
+body{
+  background-color: lightgray;
+}
+.page{
+	width: 900px;    
+	background-color: lightcyan;   
+	margin: auto;
+	padding: 50px;
+	padding-top: 35px;
+}
+.pure-u-1-3{
+  background-color: lightblue;
+}
+.pure-u-1-1{
+  background-color: lightblue;
+}
+.vis-container{
+	width: 100%;
+}
+.description h2, h1{
+	margin-top:0px;
+}
+.description-center {
+	padding-left: 10px;
+  padding-right: 10px;
+}
+.pure-g{
+	margin-bottom: 25px;
+}
