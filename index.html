@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Visualisations</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro&family=Birthstone&family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+<body>
+ <div class="page">
+   <!-- pure grid group -->
+   <div class="pure-g">
+    <div class="pure-u-1">
+      <h1>Data Visualization 2</h1>
+      <p> This data visualzation shows the global Covid-19 situation in 2020.</p>
+    </div>
+  </div>
+<!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <h2>Global Deaths Rate  Map</h2>
+      <div id="vis1" class="vis-container"></div>
+    </div>
+  </div>
+
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div class="description description-center">
+        <p>
+          This map shows the Death Rate (deaths cases per 100 confirmed cases) with each country in 2020.
+          The deaths rate in <span class="d_text">Yemem</span> is heightest. 
+          On average, there are nearly <span class="d_text">29 deaths cases</span>  for every 100 confirmed cases.
+          Followed by the <span class="d_text">United Kingdom</span> and <span class="d_text">Belgium</span>, the death rate is <span class="d_text">15.19%</span> and <span class="d_text">14.79%</span> respectively.
+          The fourth and fifth Countries are <span class="d_text">Italy</span> with a death rate of <span class="d_text">14.26%</span> and <span class="d_text">France</span> with a deaths rate of <span class="d_text">13.71%</span>.
+          This means <span class="d_text">1 to 2 deaths</span> out of every 10 confirmed cases, the situation of Covid-19 is serious in these 5 countries.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="vis2"  class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-center">
+          <h2>Recovered Rate</h2>
+          <p>
+            These 2 bar charts shows the recovered Rate (recovered cases per 100 confirmed cases) in 2020. 
+            The recovered rate of Covid-19 in the <span class="r_text">Western Pacific region</span> is the highest, <span class="r_text">77</span> out of every 100 confirmed cases have been recovered. 
+            Followed by <span class="r_text">Europe</span> and <span class="r_text">South East Asia</span>, reaching <span class="r_text">69%</span> and <span class="r_text">67%</span>.
+            <br><br>
+            The recovered rate in the top 10 countries with recovery rate exceeds <span class="r_text">95%</span>. Among them, the first, second, and third countries are <span class="r_text">Djibouti</span>, <span class="r_text">Iceland</span> and <span class="r_text">Brunei</span>.
+            At the same time, no country in the <span class="d_text">South-east Asia</span> and <span class="d_text">Americas</span> has entered the <span class="r_text">top 10</span>.
+          </p>
+        </div>
+      </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-3">
+      <div class="description description-center">
+        <h2>Deaths and Recovered with Confirmed Cases</h2>
+        <p> 
+          For most countries, with the increase in the number of confirmed cases, the number of deaths and recoveries have increased proportionally.
+          <br><br>
+          Among these countries, the highest number of confirmed cases is the <span class="c_text">United States</span>, with <span class="c_text">4,290,259</span> confirmed cases, <span class="d_text">148,011</span> deaths, and <span class="r_text">1,325,804</span> recovered.
+          In the <span class="c_text">UK</span>, the number of confirmed cases is <span class="c_text">301,708</span>, <span class="d_text">45,844</span> people have died, and only <span class="r_text">1,437</span> people have recovered.
+          On the contrary, the number of confirmed cases in <span class="c_text">Singapore</span> was <span class="c_text">50,838</span>, the number of recovered cases was <span class="r_text">45,692</span>, and only <span class="d_text">27</span> people died.
+        </p>
+      </div>
+    </div>
+    <div class="pure-u-2-3">
+      <div id="vis3"  class="vis-container"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <h2>New Confirmed Cases until July 27th, 2020</h2>
+      <div id="vis4"  class="vis-container"></div>
+    </div>
+  </div>
+  <div class="pure">
+    <div class="pure-u-1-1">
+      <div class="description description-center">
+        <p>
+          On the whole, starting from March 8th, the number of daily new cases increased significantly until July 27th.
+          Before March 8th, only the <span class="c_text">Pacific region</span> had a certain number of confirmed cases. 
+          On <span class="c_text">February 13rd</span>, the number of confirmed cases reached <span class="c_text">13,643</span>. After that, the number of new cases began to decrease. 
+          Covid-19 was initially controlled.
+          Between March 08th and April 19th, the <span class="c_text">Europe</span> has a significant increase in new cases. After that, new cases were decreased.
+          On <span class="c_text">April 12nd</span>, the number of new cases in Europe reached a peak of <span class="c_text">56,494</span> cases.
+          After April 19th, the number of new cases in the <span class="c_text">Americas</span> has been ahead of other regions, until July 27th. 
+          On <span class="c_text">July 22nd</span>, the number of new cases reached a peak, and <span class="c_text">172,649</span> people were diagnosed that day.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var specVis1 = "js/world_map.vg.json";
+  var specVis2 = "js/top_10_bar_chart.vg.json";
+  var specVis3 = "js/bubbleplot.vg.json";
+  var specVis4 = "js/line_chart.vg.json";
+
+  vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis4', specVis4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+</script>
+</body>
+</html>
