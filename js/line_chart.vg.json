@@ -1,0 +1,189 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Xiaokun1999/Data-Visualization-2/main/data/full_grouped.csv"
+  },
+  "params": [{
+    "name": "region_selection",
+    "bind": {
+      "input": "select",
+      "options": [
+        null,
+        "Africa",
+        "Americas",
+        "Eastern Mediterranean",
+        "Europe",
+        "South-East Asia",
+        "Western Pacific"
+      ],
+      "labels":[
+        "Show All",
+        "Africa",
+        "Americas",
+        "Eastern Mediterranean",
+        "Europe",
+        "South-East Asia",
+        "Western Pacific"
+      ],
+      "name": "Region Selection: "
+    }
+  }],
+  "transform": [{
+    "calculate": "timeParse(datum['Date'], '%d/%m/%Y')",
+    "as": "New_date"
+  }],
+  "vconcat":[{
+    "title": "Total Covid-19 New Confirmed cases with each Region",
+    "width": 700,
+    "height": 300,
+    "transform": [
+      {"filter": "region_selection == null || datum.WHO_Region == region_selection"}
+    ],
+    "layer": [{
+      "encoding": {
+        "x": {
+          "field": "New_date", 
+          "type": "temporal",
+          "scale": {"domain": {"param": "time_brush"}},
+          "title": "Date"
+        },
+        "y": {
+          "field": "New_cases", 
+          "type": "quantitative",
+          "aggregate":"sum",
+          "title": "New Cases"
+        },
+        "color": {
+          "field": "WHO_Region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Americas",
+              "Eastern Mediterranean",
+              "Europe",
+              "South-East Asia",
+              "Western Pacific"],
+            "range": [
+              "#2ca25f",
+              "#8856a7",
+              "#43a2ca",
+              "#e34a33",
+              "#636363",
+              "#d95f0e"
+            ]
+          }
+        },
+        "tooltip": [
+          {"field": "New_date", "type": "temporal", "title":"Date"},
+          {"field": "WHO_Region", "type": "nominal", "title":"Region"},
+          {"field": "New_cases", "type": "quantitative", "aggregate":"sum","title":"New Confirmed Cases"}
+        ]
+      },
+      "layer": [
+        {"mark": "line"},
+      {
+        "params": [{
+          "name": "label",
+          "select": {
+            "type": "point",
+            "encodings": ["x"],
+            "nearest": true,
+            "on": "mouseover"
+          }
+        }],
+        "mark": "point",
+        "encoding": {
+          "opacity": {
+            "condition": {
+              "param": "label",
+              "empty": false,
+              "value": 1
+            },
+            "value": 0
+          }
+        }
+      }]
+    },{
+      "transform": [{"filter": {"param": "label", "empty": false}}],
+      "layer": [{
+        "mark": {
+          "type": "rule", 
+          "color": "gray"
+        },
+        "encoding": {
+          "x": {
+            "type": "temporal", 
+            "field": "New_date",
+            "scale": {"domain": {"param": "time_brush"}}
+          }
+        }
+      },{
+        "encoding": {
+          "text": {
+            "type": "quantitative", 
+            "field": "New_cases",
+            "aggregate":"sum"
+          },
+          "x": {
+            "type": "temporal", 
+            "field": "New_date",
+            "scale": {"domain": {"param": "time_brush"}},
+            "title": "Date"
+          },
+          "y": {
+            "type": "quantitative", 
+            "field": "New_cases",
+            "aggregate":"sum",
+            "title": "New Cases"
+          }
+        },
+        "layer": [{
+          "mark": {
+            "type": "text",
+            "stroke": "white",
+            "strokeWidth": 2,
+            "align": "right",
+            "dx": 5,
+            "dy": -5
+          }
+        },{
+          "mark": {
+            "type": "text", 
+            "align": "right", 
+            "dx": -5, 
+            "dy": -5},
+          "encoding": {
+            "color": {
+              "type": "nominal", 
+              "field": "WHO_Region"
+            }
+          }
+        }]
+      }]
+    }]
+  },{
+    "title": "Total Covid-19 New Confirmed Cases every Month",
+    "width": 700,
+    "height": 60,
+    "mark": "line",
+    "params": [{
+      "name": "time_brush",
+      "select": {"type": "interval", "encodings": ["x"]}
+    }],
+    "encoding": {
+      "x": {
+        "field": "New_date", 
+        "type": "temporal",
+        "title": null
+        },
+      "y": {
+        "field": "New_cases",
+        "type": "quantitative",
+        "aggregate": "sum",
+        "axis": {"tickCount": 3, "grid": false},
+        "title": "New Cases"
+      }
+    }
+  }]
+}
